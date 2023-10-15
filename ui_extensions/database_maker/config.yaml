@@ -1,0 +1,9 @@
+name: bark
+author: ParisNeo
+version: 1.0
+based_on:  suno-ai/bark
+reference: https://github.com/ParisNeo/bark
+description: |
+  uses bark to give the AI a custom voice.
+help: |
+  Just activate the extension and your AI will start to talk

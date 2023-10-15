@@ -2,9 +2,9 @@ from lollms.extension import LOLLMSExtension
 from lollms.helpers import ASCIIColors
 from lollms.config import InstallOption, TypedConfig, BaseConfig, ConfigTemplate
 import subprocess
-extension_name="Whisper"
+extension_name="Bark"
 
-class Whisper(LOLLMSExtension):
+class Bark(LOLLMSExtension):
     def __init__(self, app) -> None:
         template = ConfigTemplate([
                 {"name":"active","type":"bool","value":False},
