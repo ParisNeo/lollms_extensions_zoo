@@ -1,9 +1,9 @@
-name: bark
+name: database maker
 author: ParisNeo
 version: 1.0
-based_on:  suno-ai/bark
-reference: https://github.com/ParisNeo/bark
+based_on:  ParisNeo
+reference: None
 description: |
-  uses bark to give the AI a custom voice.
+  Can be used to build a discussion database from raw data.
 help: |
-  Just activate the extension and your AI will start to talk
+  This is a Ui extension

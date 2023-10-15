@@ -1,9 +1,9 @@
-name: bark
-author: ParisNeo
+name: Whistper
+author: ggerganov
 version: 1.0
-based_on:  suno-ai/bark
-reference: https://github.com/ParisNeo/bark
+based_on:  ggerganov/whisper.cpp
+reference: https://github.com/ggerganov/whisper.cpp
 description: |
-  uses bark to give the AI a custom voice.
+  Makes lollms and all personas controllable using audio
 help: |
-  Just activate the extension and your AI will start to talk
+  Just activate the extension and your AI will start to listen
