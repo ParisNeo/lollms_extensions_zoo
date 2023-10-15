@@ -2,6 +2,7 @@ from lollms.extension import LOLLMSExtension
 from lollms.helpers import ASCIIColors
 from lollms.config import InstallOption, TypedConfig, BaseConfig, ConfigTemplate
 import subprocess
+from pathlib import Path
 extension_name="Bark"
 
 class Bark(LOLLMSExtension):
@@ -14,8 +15,7 @@ class Bark(LOLLMSExtension):
             template,
             config
         )
-
-        super().__init__("bark", extension_config, app)
+        super().__init__("bark", Path(__file__).parent, extension_config, app)
 
 
     def build_extension(self):
