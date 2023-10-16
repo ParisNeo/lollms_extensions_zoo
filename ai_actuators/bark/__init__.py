@@ -26,8 +26,7 @@ class Bark(LOLLMSExtension):
 
 
     def build_extension(self):
-        from bark_core import SAMPLE_RATE, generate_audio, preload_models
-        from scipy.io.wavfile import write as write_wav
+        from bark_core import preload_models
 
         # download and load all models
         preload_models()
@@ -56,11 +55,11 @@ class Bark(LOLLMSExtension):
 
     def post_gen(self, ai_output:str):
         from bark import SAMPLE_RATE, generate_audio, preload_models
-        from scipy.io.wavfile import write as write_wav
         import pyaudio
         os.environ["SUNO_OFFLOAD_CPU"] = "True"
         os.environ["SUNO_USE_SMALL_MODELS"] = "True"
-        SAMPLE_RATE = 44100
+        # Preload models for faster audio generation
+        preload_models()
 
         audio_array = generate_audio(ai_output)
         # save audio to disk
