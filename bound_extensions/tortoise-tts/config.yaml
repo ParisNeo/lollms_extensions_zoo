@@ -1,0 +1,10 @@
+name: Tortoise-tts
+author: ParisNeo
+version: 1.0
+based_on:  neonbjb/tortoise-tts
+reference: https://github.com/ParisNeo/bark
+description: |
+  Introducing Tortoise Text to Speech: Giving Voice to the AI Output
+  Tortoise Text to Speech is a groundbreaking extension for LoLLMs that revolutionizes the way we interact with AI-generated text. This innovative tool allows you to give a voice to the AI output, transforming written text into spoken words with a specific voice. Customize the voice to match your preferences or replicate the voice of a specific individual. Listen to AI-generated content in a natural and engaging manner, perfect for auditory learning or visual impairments. Seamlessly integrate with LoLLMs, creating a more immersive and dynamic experience. Prioritizing privacy and data security, Tortoise Text to Speech ensures your conversations remain private and secure. Give your AI-generated text a captivating and engaging voice with Tortoise Text to Speech. Let your ideas be heard.
+help: |
+  Just activate the extension and your AI will start to talk
