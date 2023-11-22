@@ -99,20 +99,20 @@ if __name__=="__main__":
     import numpy as np
     # SAMPLE_RATE = 44100
     # Split the text into paragraphs
-    paragraphs = text.split("\n\n")
+    paragraphs = text.split(".")
 
     # Preload models for faster audio generation
     preload_models()
 
     # Create an empty list to store the audio arrays
     audio_arrays = []
-    voice_preset = "v2/en_speaker_6"
+    voice_preset = "v2/en_speaker_2"
     # Generate audio for each paragraph
     i=0
     for paragraph in tqdm(paragraphs, desc="Generating audio"):
-        audio_array = generate_audio(paragraph, history_prompt=str(voice_preset), silent=True)
+        audio_array = generate_audio(paragraph+'.', history_prompt=str(voice_preset), silent=True)
         audio_arrays.append(audio_array)
-        write_wav(Path.home()/"audio_out_chunk_{i}.wav", SAMPLE_RATE, audio_array)
+        write_wav(Path.home()/f"audio_out_chunk_{i}.wav", SAMPLE_RATE, audio_array)
         i += 1
     # Concatenate the audio arrays
     concatenated_audio = np.concatenate(audio_arrays)
