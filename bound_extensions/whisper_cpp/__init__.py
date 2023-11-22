@@ -6,7 +6,8 @@ from pathlib import Path
 extension_name="Whisper"
 
 class Whisper(LOLLMSExtension):
-    def __init__(self, app) -> None:
+    def __init__(self, app,
+                    installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY) -> None:
         template = ConfigTemplate([
                 {"name":"active","type":"bool","value":False},
             ])
@@ -16,7 +17,7 @@ class Whisper(LOLLMSExtension):
             config
         )
 
-        super().__init__("whisper", Path(__file__).parent, extension_config, app)
+        super().__init__("whisper", Path(__file__).parent, extension_config, app, installation_option=installation_option)
 
 
     def build_extension(self):

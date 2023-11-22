@@ -13,7 +13,8 @@ pth = Path(__file__).parent/"bark_core"
 sys.path.append(str(pth))
 
 class Bark(LOLLMSExtension):
-    def __init__(self, app) -> None:
+    def __init__(self, app,
+                    installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY) -> None:
         template = ConfigTemplate([
                 {"name":"active","type":"bool","value":False},
             ])
@@ -22,7 +23,7 @@ class Bark(LOLLMSExtension):
             template,
             config
         )
-        super().__init__("bark", Path(__file__).parent, extension_config, app)
+        super().__init__("bark", Path(__file__).parent, extension_config, app, installation_option=installation_option)
 
 
     def build_extension(self):
@@ -90,43 +91,8 @@ class Bark(LOLLMSExtension):
     
 
 if __name__=="__main__":
-    text="""
-♪ Yo, listen up, I got a story to tell,
-'Bout a tool called lollms, it's a rap rebel,
-It's a web interface, user-friendly and slick,
-Helping you with tasks, it's the ultimate pick ♪
-
-♪ You can choose your binding, model, and personality,
-Enhance your writing, coding, and data clarity,
-From emails to essays, it's got you covered,
-With light and dark mode, your preferences discovered ♪
-
-♪ Search, organize, generate, it's all in there,
-Images, music, answers, it's beyond compare,
-Integrated with GitHub, easy access at hand,
-With ratings and discussions, it's a genius plan ♪
-
-♪ But let's talk about ethics, the implications of AI,
-Lollms encourages reflection, don't be shy,
-Weigh the pros and cons, the impact on society,
-As we dive into the world of this technology ♪
-
-♪ And it's open source, anyone can contribute,
-Making it better, that's the attribute,
-Developed by ParisNeo, giving back to the community,
-A tool that's free, enhancing unity ♪
-
-♪ So if you're looking for a tool that's top-notch,
-Lollms is here, ready to rock,
-With ongoing development and a supportive crew,
-It's the ultimate choice, that's true ♪
-
-♪ So check out the documentation, get started today,
-Unleash your creativity, let your words play,
-Lollms, the rapper's best friend, a skilled companion,
-Bringing the art of rap to a new dimension ♪
-    
-    """
+    from safe_store.generic_data_loader import GenericDataLoader
+    text=GenericDataLoader.read_file(Path(__file__).parent/"examples/text.txt")
     from bark import SAMPLE_RATE, generate_audio, preload_models
     from scipy.io.wavfile import write as write_wav
     from tqdm import tqdm

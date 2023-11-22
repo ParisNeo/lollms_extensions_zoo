@@ -5,7 +5,8 @@ import subprocess
 extension_name="Bark"
 
 class Bark(LOLLMSExtension):
-    def __init__(self, app) -> None:
+    def __init__(self, app,
+                    installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY) -> None:
         template = ConfigTemplate([
                 {"name":"active","type":"bool","value":False},
             ])
@@ -15,7 +16,7 @@ class Bark(LOLLMSExtension):
             config
         )
 
-        super().__init__("bark", extension_config, app)
+        super().__init__("bark", extension_config, app, installation_option=installation_option)
 
 
     def build_extension(self):

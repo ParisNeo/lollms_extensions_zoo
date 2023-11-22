@@ -1,0 +1,24 @@
+Let's make a platform game using pygame.
+In this game we have the following types of elements:
+1- The main character is controllable by the player:
+
+It can move left and right and jump
+It collects collectables and should avoid traps, projectiles and ennemies
+Its objective is to recover the cup, then reach level exit
+2- Static elements:
+The ground is at the bottom of the screen. The player can walk on it
+The platformes are floating static elements, the player can walk on them
+3- Enemies:
+These are AI controlled elements who seek to kill the main character and forbid him from recovering the cup and go to the exit.
+Two types of enemies should be built for now:
+The first is ground enemies who can't fly and can kill the main character by touching him
+The second one is a space ship that drops bombs.
+4- Collectables: These are elements that increase the score of the player each time they are collected
+5- The cup: This is the objective of the main character
+6- Level exit: A door that is only open if the player has collected the cup.
+7- Traps: Holes in the ground or fire that can harm the main character and kill him.
+8- The score : A digital display that represents the score of the player
+9- Life: a list if hearts that represent the player remaining tries
+
+Before coding the game, let's build the game assets list. each asset will be a png file on the same folder of the game.
+Start by providing the list of asset file names that I have to provide.
