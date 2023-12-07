@@ -1,21 +1,26 @@
 from lollms.extension import LOLLMSExtension
 from lollms.helpers import ASCIIColors
 from lollms.config import InstallOption, TypedConfig, BaseConfig, ConfigTemplate
+from lollms.utilities import PackageManager
 import subprocess
 from pathlib import Path
-extension_name="Bark"
+
+if not PackageManager.check_package_installed("tortoise-tts"):
+    PackageManager.install_package("tortoise-tts")
+    from tortoise-tts import utils, api
+else:
+    import tortoise-tts import utils, api
+
+extension_name="Tortoise-tts"
 
 import sys
 import os
 
-sys.path.append(os.getcwd())
-pth = Path(__file__).parent/"bark_core"
-sys.path.append(str(pth))
-
-class Bark(LOLLMSExtension):
+class TortoiseTTS(LOLLMSExtension):
     def __init__(self, app,
                     installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY) -> None:
         template = ConfigTemplate([
+                {"name":"sample_path","type":"str","value":"","help":"The path to a folder containing samples to clone"},
                 {"name":"active","type":"bool","value":False},
             ])
         config = BaseConfig.from_template(template)
@@ -23,20 +28,13 @@ class Bark(LOLLMSExtension):
             template,
             config
         )
-        super().__init__("bark", Path(__file__).parent, extension_config, app, installation_option=installation_option)
+        super().__init__("tortoise-tts", Path(__file__).parent, extension_config, app, installation_option=installation_option)
 
 
     def build_extension(self):
-     
-        import torch
-        import torchaudio
-
-        from tortoise.api import MODELS_DIR, TextToSpeech
-        from tortoise.utils.audio import get_voices, load_voices, load_audio
-        from tortoise.utils.text import split_and_recombine_text
-
-        # download and load all models
-        preload_models()
+        reference_clips = [utils.audio.load_audio(p, 22050) for p in Path(self.config.sample_path).iterdir()]
+        tts = api.TextToSpeech(use_deepspeed=True, kv_cache=True, half=True)
+        pcm_audio = tts.tts_with_preset("your text here", voice_samples=reference_clips, preset='fast')
         return self
     
     def install(self):
