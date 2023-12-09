@@ -5,13 +5,13 @@ from lollms.utilities import PackageManager
 import subprocess
 from pathlib import Path
 
-if not PackageManager.check_package_installed("tortoise-tts"):
+if not PackageManager.check_package_installed("tortoise"):
     PackageManager.install_package("tortoise-tts")
-    from tortoise-tts import utils, api
+    from tortoise import utils, api
 else:
-    import tortoise-tts import utils, api
+    from tortoise import utils, api
 
-extension_name="Tortoise-tts"
+extension_name="TortoiseTTS"
 
 import sys
 import os
@@ -28,7 +28,7 @@ class TortoiseTTS(LOLLMSExtension):
             template,
             config
         )
-        super().__init__("tortoise-tts", Path(__file__).parent, extension_config, app, installation_option=installation_option)
+        super().__init__("tortoise_tts", Path(__file__).parent, extension_config, app, installation_option=installation_option)
 
 
     def build_extension(self):
