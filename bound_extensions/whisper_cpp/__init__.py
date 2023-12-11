@@ -5,22 +5,16 @@ from lollms.utilities import PackageManager
 from lollms.media import AudioRecorder
 import subprocess
 from pathlib import Path
-import time
-if not PackageManager.check_package_installed("faster_whisper"):
-    PackageManager.install_package("faster-whisper")
-    from faster_whisper import WhisperModel
-else:
-    from faster_whisper import WhisperModel
+if not PackageManager.check_package_installed("whisper"):
+    PackageManager.install_package("openai-whisper")
+import whisper
 
 
 if not PackageManager.check_package_installed("pyaudio"):
     PackageManager.install_package("pyaudio")
     PackageManager.install_package("wave")
-    import pyaudio
-    import wave
-else:
-    import pyaudio
-    import wave
+import pyaudio
+import wave
 import threading
 
 extension_name="Whisper"
@@ -48,7 +42,7 @@ class Whisper(LOLLMSExtension):
 
     def build_extension(self):
         # Run on GPU with FP16
-        self.model = WhisperModel(self.extension_config.model, device=self.extension_config.device, compute_type=self.extension_config.compute_type)
+        self.model = whisper.load_model(self.extension_config.model, device=self.extension_config.device, compute_type=self.extension_config.compute_type)
         return self
     
     def install(self):
