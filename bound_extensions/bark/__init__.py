@@ -92,7 +92,7 @@ class Bark(LOLLMSExtension):
 
 if __name__=="__main__":
     from safe_store.generic_data_loader import GenericDataLoader
-    text=GenericDataLoader.read_file(Path(__file__).parent/"examples/text.txt")
+    text=GenericDataLoader.read_file(Path(__file__).parent/"examples/rap2.txt")
     from bark import SAMPLE_RATE, generate_audio, preload_models
     from scipy.io.wavfile import write as write_wav
     from tqdm import tqdm
