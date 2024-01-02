@@ -1,4 +1,4 @@
-name: Whistper
+name: Whisper
 author: ggerganov
 version: 1.0
 based_on:  ggerganov/whisper.cpp
