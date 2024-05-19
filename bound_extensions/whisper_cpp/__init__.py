@@ -2,7 +2,7 @@ from lollms.extension import LOLLMSExtension
 from lollms.helpers import ASCIIColors
 from lollms.config import InstallOption, TypedConfig, BaseConfig, ConfigTemplate
 from lollms.utilities import PackageManager
-from lollms.media import AudioRecorder
+from lollms.media import RTCom
 import subprocess
 from pathlib import Path
 if not PackageManager.check_package_installed("whisper"):
@@ -38,7 +38,7 @@ class Whisper(LOLLMSExtension):
         super().__init__("whisper", Path(__file__).parent, extension_config, app, installation_option=installation_option)
         self.output_folder:Path = self.app.lollms_paths.personal_outputs_path/self.name
         self.output_folder.mkdir(exist_ok=True, parents=True)
-        self.audioRecorder = AudioRecorder(self.output_folder/"chunk.wav")
+        self.audioRecorder = RTCom(self.output_folder/"chunk.wav")
 
     def build_extension(self):
         # Run on GPU with FP16
